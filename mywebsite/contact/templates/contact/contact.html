@@ -1,0 +1,85 @@
+{%extends 'base/base.html'%}
+{%block content%}
+{% load crispy_forms_tags %}
+<style type="text/css">
+</style>
+<div class="row justify-content-center">
+    <div class="col-6  justify-content-center align-items-center">
+        <div class="card w-100 h-100">
+            <div id='map' class=" shadow" style="height: 100%;width: 100%;"></div>
+            <script>
+                mapboxgl.accessToken = '{{mapbox_access_token}}';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [27.062407,38.395270],
+            zoom:12
+        });
+        </script>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card h-100  shadow">
+            <h3 class="text-center mt-4">Contact</h3>
+            <ul class="list-group border-white text-center">
+  <li class="list-group-item"><h2><i class="bi bi-geo-alt-fill"></i></h2><p>Egitim mah. Balcova/Izmır-Turkey </p> </li>
+  <li class="list-group-item"><h2><i class="bi bi-telephone-fill"></i></h2><p>+90 (543) 309-8858 </p> </li> 
+   <li class="list-group-item"><h2><i class="bi bi-envelope-fill"></i></h2><a href = "mailto: 99hanbatu@windowslive.com">99hanbatu@windowslive.com</a></li>
+</ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6 my-5 ">
+        <div class="card w-100 ">
+            <h3 class="text-center mt-4">Contact Form</h3>
+            <form method="POST" class="form-group px-5 py-3">
+                
+                {%csrf_token%}
+             
+                {{form | crispy}}
+                <div class="text-end">
+                    <button type="submit" class=" btn btn-success mt-2  "> Send Message</button></div>
+            </form>
+        </div>
+    </div>
+    <div class="col-6 my-5">
+        <div class="card w-100 h-100">
+            <h3 class="text-center mt-4 ">Social Media</h3>
+            <table class="table  text-center mt-5 border-white">
+                <tr><td><a class="btn btn-primary btn-lg" href="https://www.linkedin.com/in/batuhan-başpınar-456183aa" ><h1><i class="bi bi-linkedin"></i></h1></a><br>LinkedIn </td>
+                <td><a class="btn btn-dark btn-lg" href="https://github.com/uberfresh"><h1><i class="bi bi-github"></i></h1></a><br>GitHub  </td></tr>
+                    <tr><td><a class="btn btn-primary btn-lg" href="https://www.facebook.com/BatuhanBaspinar123" ><h1><i class="bi bi-facebook"></i></h1></a><br>Facebook  </td>
+                <td><a class="btn btn-danger btn-lg" href = "mailto: batu35335@gmail.com" ><h1><i class="bi bi-envelope-fill"></i></h1></a> <br>Gmail</td></tr>
+
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Success!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         Your message has been sent successfully! 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+    
+      </div>
+    </div>
+  </div>
+</div>
+{%if  posted%}
+<script type="text/javascript">
+    $(window).on('load', function() {
+        $('#exampleModal').modal('show');
+    });
+</script>
+{%endif%}
+{%endblock content%}
