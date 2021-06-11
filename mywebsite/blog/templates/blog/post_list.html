@@ -1,12 +1,41 @@
 {%extends 'base/base.html'%}
 {%block content%}
-<div class="row  mb-4 " style="height: px;">
-    <div class="jumbotron d-flex justify-content-end ">
-        <a class="btn btn-primary  " href="">Sign in</a>
-        <a class="btn btn-primary-border  " href="">Sign up</a>
+<div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+    <div class="col-md-12 px-0">
+        <div class="row">
+            <div class="col-4 text-center">
+                <h1 class="display-4 ">My Blog</h1>
+                <p class="lead my-3">
+                   Hi! There is my blog page!
+                </p>
+                <p class="lead mb-0 d-flex align-self-end"></p>
+            </div>
+            <div class="col-4 text-center ">
+              {% if user.is_authenticated %}
+              <h3 class="mt-2">Welcome!<br>{{user.username}}</h3>
+              {%endif%}
+            </div>
+            <div class="col-4">
+                <div class="row  mb-4  ">
+                
+                    
+                       <p class="lead my-3 text-center">
+                  
+                 Sign up now!<br> 
+                And publish your own posts!
+                </p>
+                
+    <div class="jumbotron d-flex justify-content-center ">
+        <a class="btn btn-success mx-1 " href="">Sign up</a>
+        <a class="btn btn-outline-success mx-1 text-white " href="">Sign in</a>
     </div>
-    <h1 class="text-center">BLOG</h1>
+
 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {%for post in posts%}
 {%if forloop.counter0|divisibleby:2 %}
 {%ifnotequal forloop.counter0 0%}
