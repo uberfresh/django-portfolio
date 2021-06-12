@@ -39,4 +39,13 @@ class PublishForm(View):
 	template_name = 'blog/publish_post.html'
 	context ={}
         
-	
+	def get(self,request):
+		form = PublishForm()
+		self.context["form"] = form 
+		return render(request,self.template_name,self.context)
+	def post(self,request):
+		form = PublishForm(request.POST,)
+		if form.is_valid():
+			form.save()
+		self.context["form"] = form
+		return render(request,self.template_name,self.context)
