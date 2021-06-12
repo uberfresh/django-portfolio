@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'contact.apps.ContactConfig',
     'base.apps.BaseConfig',
     'blog.apps.BlogConfig',
-    'register.apps.RegisterConfig',
+    'account.apps.AccountConfig',
     'crispy_forms',
     
 ]
@@ -137,8 +137,8 @@ os.path.join(BASE_DIR,'static')
 MEDIA_URL = '/images/'
 MEDIA_ROOT =os.path.join(BASE_DIR,'images')
 
-LOGIN_REDIRECT_URL  = '/blog'
-LOGOUT_REDIRECT_URL  = '/blog'
+LOGIN_REDIRECT_URL  = '/'
+LOGOUT_REDIRECT_URL  = '/blog/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

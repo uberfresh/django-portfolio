@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from django.utils import timezone
-from django.views import generic
+from django.views import generic,View
 from .models import PostModal
+from .forms import PublishForm
+
 # Create your views here.
 
 
 class PostList(generic.ListView):
         template_name = 'blog/post_list.html'
+        
         def get_queryset(self):
         	return PostModal.objects.all()
        
@@ -30,3 +33,10 @@ class Post(generic.DetailView):
 
 
 
+class PublishForm(View):
+	form_class = PublishForm()
+	
+	template_name = 'blog/publish_post.html'
+	context ={}
+        
+	
