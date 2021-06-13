@@ -1,51 +1,46 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.utils import timezone
 from django.views import generic,View
-from .models import PostModal
+from .models import Post
+from account.models import AboutUser
 from .forms import PublishForm
+
+from django.contrib.auth.models import User
 
 # Create your views here.
 
 
-class PostList(generic.ListView):
-        template_name = 'blog/post_list.html'
-        
-        def get_queryset(self):
-        	return PostModal.objects.all()
-       
-        
-        def get_context_data(self,**kwargs):
-        	context = super().get_context_data(**kwargs)
-        	context['posts'] = PostModal.objects.all().order_by('-pub_date')
-        	context['post_count'] = PostModal.objects.all().count()
-        	return context
-
-	    
-
-	   
-
-class Post(generic.DetailView):
-	model = PostModal
-	template_name = 'blog/post.html'
-	context_object_name = 'post'
-	def get_queryset(self):
-		return PostModal.objects.all()
-
-
-
-class PublishForm(View):
-	form_class = PublishForm()
+class BlogView(generic.ListView):
+	model = Post
+	template_name = 'blog/blog.html'
+	queryset = Post.objects.all().order_by('-pub_date')
+    
 	
+   
+
+class ArticleView(generic.DetailView):
+	model = Post
+	template_name = 'blog/article.html'
+
+	def get(self, request, *args, **kwargs):
+		post= get_object_or_404(Post, slug=kwargs['slug'])
+		about = get_object_or_404(AboutUser,username = post.author)
+		context = {'post': post,'about':about}
+		return render(request, 'blog/article.html', context)
+
+
+class PublishPostView(generic.CreateView):
+	form_class = PublishForm
+	query_pk_and_slug = True
 	template_name = 'blog/publish_post.html'
-	context ={}
-        
-	def get(self,request):
-		form = PublishForm()
-		self.context["form"] = form 
-		return render(request,self.template_name,self.context)
 	def post(self,request):
-		form = PublishForm(request.POST,)
-		if form.is_valid():
-			form.save()
-		self.context["form"] = form
-		return render(request,self.template_name,self.context)
+		form = self.form_class(request.POST or None , request.FILES or None)
+		obj = form.save()
+		obj.author = self.request.user
+		obj.save()
+		return super().form_valid(form)
+	
+         
+
+		
+		

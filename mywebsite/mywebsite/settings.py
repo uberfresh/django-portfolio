@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'base.apps.BaseConfig',
     'blog.apps.BlogConfig',
     'account.apps.AccountConfig',
+    'imagedetection.apps.ImagedetectionConfig',
     'crispy_forms',
     
 ]
@@ -114,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Istanbul'
 
 USE_I18N = True
 
@@ -134,10 +135,10 @@ os.path.join(BASE_DIR,'static')
 ]
 
 
-MEDIA_URL = '/images/'
-MEDIA_ROOT =os.path.join(BASE_DIR,'images')
+MEDIA_URL = '/media/'
+MEDIA_ROOT =os.path.join(BASE_DIR,'media')
 
-LOGIN_REDIRECT_URL  = '/'
+LOGIN_REDIRECT_URL  = '/blog/'
 LOGOUT_REDIRECT_URL  = '/blog/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

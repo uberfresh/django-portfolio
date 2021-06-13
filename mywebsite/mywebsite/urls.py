@@ -10,6 +10,7 @@ urlpatterns = [
     path('blog/',include('blog.urls')),
     path('account/',include('account.urls')),
     path('', include('django.contrib.auth.urls')),
+    path('upload/',include('imagedetection.urls')),
 
 ]
 

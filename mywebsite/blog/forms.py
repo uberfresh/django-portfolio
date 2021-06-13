@@ -1,11 +1,11 @@
 from django import forms
 from django.forms import ModelForm
-from .models import PostModal
+from .models import Post
 
 class PublishForm(ModelForm):
 	class Meta:
-		model = PostModal
-		fields = ['title','content','tag','image']
+		model = Post
+		fields = ['title','tag','image','content']
 		
 
 

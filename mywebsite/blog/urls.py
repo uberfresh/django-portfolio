@@ -3,8 +3,8 @@ from . import views
 
 app_name = 'blog'
 urlpatterns = [
-path('',views.PostList.as_view(),name="post_list"),
-path('<slug:slug>',views.Post.as_view(),name="post"),
-path('publish/',views.PublishForm.as_view(),name="publish"),
+path('',views.BlogView.as_view(),name="blog"),
+path('<slug:slug>',views.ArticleView.as_view(),name="article"),
+path('publish_post/',views.PublishPostView.as_view(),name="publish_post"),
 ]
 
