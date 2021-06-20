@@ -5,7 +5,7 @@ from .models import Post
 class PublishForm(ModelForm):
 	class Meta:
 		model = Post
-		fields = ['title','tag','image','content']
+		fields = ['title','tag','banner_image','content']
 		
 
 

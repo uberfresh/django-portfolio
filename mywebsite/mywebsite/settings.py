@@ -43,8 +43,10 @@ INSTALLED_APPS = [
     'base.apps.BaseConfig',
     'blog.apps.BlogConfig',
     'account.apps.AccountConfig',
-    'imagedetection.apps.ImagedetectionConfig',
+    
     'crispy_forms',
+    'ckeditor',
+    'ckeditor_uploader',
     
 ]
 
@@ -119,7 +121,6 @@ TIME_ZONE = 'Europe/Istanbul'
 
 USE_I18N = True
 
-USE_L10N = True
 
 USE_TZ = True
 
@@ -130,18 +131,18 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS =[
+STATICFILES_DIRS = [
 os.path.join(BASE_DIR,'static')
 ]
-
-
 MEDIA_URL = '/media/'
-MEDIA_ROOT =os.path.join(BASE_DIR,'media')
+MEDIA_ROOT ='media/'
 
 LOGIN_REDIRECT_URL  = '/blog/'
 LOGOUT_REDIRECT_URL  = '/blog/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+CKEDITOR_UPLOAD_PATH = "media/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #

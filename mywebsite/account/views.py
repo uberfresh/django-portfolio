@@ -1,46 +1,66 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
-from django.contrib import messages
 from .models import AboutUser
-from .forms import RegisterForm
+from django.contrib import messages
+
+from .forms import RegisterForm,AboutForm
+from django.views import generic
+from django.contrib.auth.views import LoginView
 # Create your views here.
-def register(request):
-    form = RegisterForm
-    context = {'form':form}
-    if request.method == "POST":
-    	form = RegisterForm(request.POST)
-    	if form.is_valid():
-    		form.save()	
-    		user = User.objects.get(username = form.cleaned_data['username'])
-    		m = AboutUser(username=user)
-    	    
-    		m.save()
-#3Bth19995.
-    		messages.success(request, 'Account was created for ' + form.cleaned_data.get('username'))
-    		
-    		return redirect('/account/login')
 
-    	else:
-    		return render(request,'account/register.html',context)
+class RegisterView(generic.CreateView):
+	form_class = RegisterForm
+	template_name = "account/register.html"
 
-    return render(request,'account/register.html',context)
+	def form_valid(self,form):
+		form.save()
+		messages.success(self.request,'Account was created for:<strong> '+ form.cleaned_data.get('username') + "</strong>") 
+		return redirect('/account/login')
 
-def loginpage(request):
-	if request.method == "POST":
-		username = request.POST.get('username')
-		password =  request.POST.get('password')
-		user = authenticate(request,username =username ,password = password)
-		
+
+class LoginPageView(LoginView):
+	template_name = 'account/login.html'
+     
+	def form_valid(self,form):
+		username = form.cleaned_data['username']
+		password = form.cleaned_data['password']
+		user = authenticate(self.request,username = username,password= password)
+
 		if user is not None:
-			login(request,user)
+			login(self.request,user)
 			return redirect('/blog/')
 		else:
-			messages.info(request,'Username OR password is incorrect!')
+			return redirect('/account/login')
 		
+	def form_invalid(self,form):
+			response = super().form_invalid(form)
+			messages.info(self.request, 'Your username or password is incorrect!.')
+			return response
+
+	
+
+class AboutView(generic.CreateView):
+	model= AboutUser
+	template_name = 'account/about.html'
+	form_class = AboutForm
+
+	def form_valid(self,form):		
+		form.save()
+		obj = form.save()
+		obj.username = self.request.user
+		obj.save()
+		return super().form_valid(form)
 
 
 
-	context = {}
-	return render(request,'account/login.html',context)
+class AboutUpdateView(generic.UpdateView):
+	model = AboutUser
+	form_class = AboutForm
+	template_name = 'account/about.html'
+
+
+	
+
+	

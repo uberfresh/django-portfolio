@@ -2,30 +2,36 @@
 {%block content%}
 {% load static %}
 {%load crispy_forms_tags%}
-
 <main class="form-signin d-flex justify-content-center align-items-center w-100 my-2">
-  <form method="POST" class="form-group w-50  ">
-   {%csrf_token%}
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <form method="POST" class="form-group w-50  ">
+        {%csrf_token%}
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <div class="form-floating my-2">
+            <input type="text" name="username" class="form-control" id="floatingInput">
+            <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="password" name="password" class="form-control" id="floatingPassword">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <button class="w-100 mb-2 btn btn-lg btn-success" type="submit">Sign in</button>
+        {% if messages %}
+     
+            {% for message in messages %}
+            {%if message.tags == "success"%}
+            <div class="alert alert-success w-100" role="alert">
+               {{message | safe}}
+            </div>
+            {%else%}
+<div class="alert alert-danger w-100" role="alert">
+               {{message | safe}}
+            </div>
+            
+            {%endif%}
 
-    <div class="form-floating my-2">
-      <input type="text"name="username" class="form-control" id="floatingInput" >
-      <label for="floatingInput">Username</label>
-    </div>
-    <div class="form-floating mb-2">
-      <input type="password" name="password" class="form-control" id="floatingPassword" >
-      <label for="floatingPassword">Password</label>
-    </div>
-
-
-
-    <button class="w-100 btn btn-lg btn-success" type="submit">Sign in</button>
-    {%for message in messages%}
-     <br><br><div class="bg-danger">  <p class="text-center text-white" id = "messages">{{message}}</p></div>
-    {%endfor%}
-  
-  </form>
+            {% endfor %}
+     
+        {% endif %}
+    </form>
 </main>
-
-
 {%endblock%}

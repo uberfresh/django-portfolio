@@ -7,11 +7,11 @@
         <div class="col-md-8" id="first">
             <h1>HELLO!</h1>
             <h1 class="text-success "><strong>I AM BATUHAN BAŞPINAR</strong></h1>
-            <h3><u>TRANIEE WEB DEVELOPER</u></h3>
+            <h3><u>GRADUATE WEB DEVELOPER</u></h3>
             <br>
             <div class="d-grid gap-2 d-md-block"><br>
-                <a class="btn btn-success btn-lg" href="#" role="button">HIRE ME</a>
-                <a class="btn btn-outline-success btn-lg" href="/static/images/net.png" download role="button">GET CV</a>
+                <a class="btn btn-success btn-lg" href="{%url 'contact:contact' %}" role="button">HIRE ME</a>
+                <a class="btn btn-outline-success btn-lg" href="/static/files/BATUHANBASPINAR_CV.pdf" download role="button">GET CV</a>
             </div>
         </div>
         <div class="col-md-4  align-items-center">
@@ -34,14 +34,15 @@
     </div>
     <br><br><br>
     <div class="row mb-5" id="about">
-        <div class="col-6 "><img class="img-thumbnail mx-auto d-block shadow-lg" src="{%static 'images/working.jpg'  %}"> </div>
+        <div class="col-6 "><img class="img-thumbnail mx-auto d-block shadow-lg " src="{%static 'images/working.jpg'  %}"> </div>
         <div class="col-6  ">
             <h2 class="text-center">ABOUT
                 MYSELF</h2>
-            <p> &nbsp;&nbsp;&nbsp; Whose given. Were gathered. There first subdue greater. Bearing you Whales heaven midst their. Beast creepeth. Fish days.
+            <p> &nbsp;&nbsp;&nbsp; Since my childhood, I enjoy working with the computers, playing games and solving problems.
             </p>
             <p>
-                Is give may shall likeness made yielding spirit a itself together created after sea is in beast beginning signs open god you're gathering whose gathered cattle let. Creature whales fruit unto meat the life beginning all in under give two. </p>
+                &nbsp;&nbsp;&nbsp; This pleasure has made me interested in software and computer science in all parts of my life.Finding solutions to problems ,developing algorithms and doing researches are my best pleasures.</p>
+            <p> Today,i want to continue my life by doing this job that i enjoy. </p>
         </div>
     </div>
 </div>
@@ -55,7 +56,7 @@
             </div>
         </div>
     </div>
-     <div class="col-4">
+    <div class="col-4">
         <div class="card h-100 w-100" style="width: 18rem;">
             <img class="card-img-top w-75 mx-auto mt-4" src="{%static 'images/python-django.png'  %}">
             <div class="card-body">
@@ -71,7 +72,6 @@
             </div>
         </div>
     </div>
-
 </div><br>
 <h2 class="text-center">OTHER SKILLS</h2>
 <div class="row my-4">
@@ -83,7 +83,7 @@
             </div>
         </div>
     </div>
-     <div class="col-4">
+    <div class="col-4">
         <div class="card h-100 w-100" style="width: 18rem;">
             <img class="card-img-top w-50 mx-auto mt-4" src="{%static 'images/unity.png'  %}">
             <div class="card-body">
@@ -99,6 +99,5 @@
             </div>
         </div>
     </div>
-
 </div>
 {%endblock%}

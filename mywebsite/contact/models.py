@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 import datetime
+from django.urls import reverse
 # Create your models here.
 
 class ContactMessage(models.Model):
@@ -11,4 +12,9 @@ class ContactMessage(models.Model):
     date = models.DateTimeField(auto_now_add=True, blank=True)
 	
     def __str__(self):
-        return self.mail
+        return self.subject
+
+    def get_absolute_url(self):
+        return reverse('contact:contact')
+
+
