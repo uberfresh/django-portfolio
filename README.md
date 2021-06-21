@@ -57,7 +57,7 @@
 ![](https://github.com/uberfresh/djangoPortfolio/blob/main/screenshots/projects.jpg)
 
 ## Requirements and Usage
-- Pull request this repo
+- Download this repo
 - Create own venv
 - Install requirements
 ```
