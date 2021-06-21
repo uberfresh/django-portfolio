@@ -12,7 +12,7 @@
 ![](https://github.com/uberfresh/djangoPortfolio/blob/main/screenshots/main2.jpg)
 
 ## Blog Page 
-- I used django featues to create blog app
+- I used django features to create blog app
 - I displayed all posts with generic listview
 
 ![](https://github.com/uberfresh/djangoPortfolio/blob/main/screenshots/blog1.jpg)
@@ -26,7 +26,7 @@
 
 - I used django user.auth feature for register and login.
 - Also i used crispy-forms module to make the forms look more beautiful. 
-- I used messages module when the form is invalid.
+- I used messages module when the form is valid or invalid.
 
 ![](https://github.com/uberfresh/djangoPortfolio/blob/main/screenshots/signup.jpg)
 
