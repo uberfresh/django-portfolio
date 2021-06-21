@@ -15,17 +15,13 @@ class BlogView(generic.ListView):
 	template_name = 'blog/blog.html'
 	context = {'object_list':Post.objects.all().order_by('-pub_date') }
 	def get(self,request,*args,**kwargs):
-		if request.user.pk:
-
-			if not AboutUser.objects.filter(username__username = request.user.username).exists():
-				return redirect('account:about',username__username= request.user.username)
-
-			else:
-				return render(request,self.template_name,self.context)
-
+	
+		if request.user.pk and not AboutUser.objects.filter(username__username = request.user.username).exists():
+			return redirect('account:about',username= request.user.username)
 		else:
 			return render(request,self.template_name,self.context)
 
+	
 	
 class ArticleView(generic.DetailView):
 	model = Post

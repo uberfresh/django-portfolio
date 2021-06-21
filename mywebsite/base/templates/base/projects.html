@@ -1,4 +1,25 @@
 {%extends 'base/base.html'%}
 {%load static%}
 {%block content%}
+<div class="row justify-content-center ">
+<h1 class="text-center"> My Projects</h1><hr>
+	{%for project in projects%}
+	<div class="col-8 my-4 d-flex">
+		<div class="card w-100" >
+  <img src="/media/{{project.image}}" class="card-img-top img-thumbnail" >
+  <div class="card-body">
+    <h5 class="card-title">{{project.title}}</h5>
+    <p class="card-text">{{project.body}}</p>
+    <div class="justify-content-center align-items-center d-flex">
+    <a href="{{project.link}}" class="btn btn-success  w-25" target="_blank">Go project</a>
+    </div>
+  </div>
+</div>
+
+
+	</div>
+	{%endfor%}
+</div>
+
+
 {%endblock%}
