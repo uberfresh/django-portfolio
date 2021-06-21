@@ -3,7 +3,7 @@
 
 
 ## Main Page
-- I added navbar in base.html for access every html files.
+- I added navbar in base.html to access from every html files.
 - I added my cv, skills, accounts etc.
 - I used bootstrap in front-end
 
